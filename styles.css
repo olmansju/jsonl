@@ -1,0 +1,31 @@
+body {
+    background-color: lightblue;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.flex-child-small {
+    flex: 0.2;
+    border: 2px solid lightblue;
+}
+
+.flex-child-textarea {
+    flex: 1;
+    border: 2px solid lightblue;
+}
+
+.flex-child:first-child {
+    margin-right: 5px;
+}
+
+.textarea {
+    width: 99%;
+}
+
+span {
+    display: inline-block;
+    vertical-align: middle;
+}
+

@@ -3,16 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>jsonl</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <h1>jsonl generator - formatting for use with GPT-3 CLI data preperation tool</h1>
-<br> The purpose of this tool is to give those new to GPT-3 Fine-Tuning support in understanding how to build and format prompt-completion pairs.
+<br> The purpose of this tool is to give those new to GPT-3 Fine-Tuning, support in understanding how to build and format prompt-completion pairs.
+<br><br><br><br><br><br>
+<div class="flex-container">
+<div id="preprompt" class="flex-child-small"><span>{"prompt": "</span></div>
+
+<div id="prompt" class="flex-child-textarea">
+    <textarea id="promptTextArea" name="promptTextArea" class="textarea">-prompt here-</textarea>
+</div>
+
+<div id="postprompt" class="flex-child-small"><span>\n\n###\n\n", </span></div>
+
+<div id="precompletion" class="flex-child-small"><span>"completion":" </span></div>
+
+<div id="completion" class="flex-child-textarea">
+    <textarea id="completionTextArea" name="completionTextArea" class="textarea">-completion here-</textarea>
+</div>
+
+<div id="postcompletion" class="flex-child-small"><span> END"} </span></div>
+</div>
+<br>
+<div id="convert" class="button" style="text-align: center"><button id="convertButton">convert to jsonl format</button></div>
+<br><br><br>
+<div id="result">results: {"prompt": "-prompt here-\n\n###\n\n", "completion": " -completion here- END"}</div>
 <br><br>
-<div id="preprompt">{"prompt": "</div>
-<div id="prompt" class="promptClass"> promot textarea </div>
-<div id="postprompt">\n\n###\n\n", </div>
-<div id="precompletion">"completion":" </div>
-<div id="completion" class="completionClass"> completion textarea </div>
-<div id="postcompletion"> END"} </div>
+<div id="save" class="save" style="text-align: center"><button id="copyButton">copy results</button>  <button id="saveToLocalMemoryButton">save results to local browser memory</button> <button id="saveToLocalFileButton">save results to local file</button></div>
+
 </body>
 </html>
