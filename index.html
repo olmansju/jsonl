@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>jsonl</title>
     <link rel="stylesheet" href="styles.css">
+    <script lang="" defer src="jsonl.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.js"></script>
 </head>
 <body>
 <h1>jsonl generator - formatting for use with GPT-3 CLI data preperation tool</h1>
@@ -27,11 +29,17 @@
 <div id="postcompletion" class="flex-child-small"><span> END"} </span></div>
 </div>
 <br>
-<div id="convert" class="button" style="text-align: center"><button id="convertButton">convert to jsonl format</button></div>
+<div id="convert" class="button" style="text-align: center">
+    <input type="button" id="convertButton" name="convertButton" class="button" value="convert to jsonl format" />
+</div>
 <br><br><br>
-<div id="result">results: {"prompt": "-prompt here-\n\n###\n\n", "completion": " -completion here- END"}</div>
+<div id="result">results: {"prompt": "-prompt here-\n\n###\n\n", "completion": " -completion here- END"} <br>
+<div id="results"></div>
+</div>
 <br><br>
-<div id="save" class="save" style="text-align: center"><button id="copyButton">copy results</button>  <button id="saveToLocalMemoryButton">save results to local browser memory</button> <button id="saveToLocalFileButton">save results to local file</button></div>
+<div id="save" class="save" style="text-align: center">
+    <input type="button" id="copyButton" name="copyButton" class="button" value="copy results" />
+    <button id="saveToLocalMemoryButton">save results to local browser memory</button> <button id="saveToLocalFileButton">save results to local file</button></div>
 
 </body>
 </html>

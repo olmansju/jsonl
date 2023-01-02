@@ -29,3 +29,6 @@ span {
     vertical-align: middle;
 }
 
+div#results {
+    background-color: aliceblue;
+}
