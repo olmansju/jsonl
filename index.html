@@ -33,13 +33,14 @@
     <input type="button" id="convertButton" name="convertButton" class="button" value="convert to jsonl format" />
 </div>
 <br><br><br>
-<div id="result">results: {"prompt": "-prompt here-\n\n###\n\n", "completion": " -completion here- END"} <br>
+<div id="result"><span id="downloadResults">results</span>: {"prompt": "-prompt here-\n\n###\n\n", "completion": " -completion here- END"} <br>
 <div id="results"></div>
 </div>
 <br><br>
 <div id="save" class="save" style="text-align: center">
     <input type="button" id="copyButton" name="copyButton" class="button" value="copy results" />
-    <button id="saveToLocalMemoryButton">save results to local browser memory</button> <button id="saveToLocalFileButton">save results to local file</button></div>
-
+    <button id="saveToLocalMemoryButton">save results to local browser memory</button>
+    <input type="button" id="saveToLocalFileButton" name="saveToLocalFileButton" class="button" value="download file" />
+</div>
 </body>
 </html>
