@@ -35,9 +35,15 @@ function copyToClipboard(){
 }
 
 function downloadFile(){
-    const downloadResults = document.getElementById('downloadResults');
-    const blob = new Blob(formatted);
-    downloadResults.href = URL.createObjectURL(blob);
-    downloadResults.download = 'jsonl-file';                     //filename to download
-    downloadResults.click();
+    console.log('downloadFile called');
+    let results = document.getElementById("results").innerText;
+    let file = new File([results], "jsonl.txt", {type: "text/plain"});
+    console.log('file is:', file);
+    const url = window.URL.createObjectURL(file);  //file.data
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = "jsonl.jsonl"
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
 }
