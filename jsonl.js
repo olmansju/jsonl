@@ -5,6 +5,8 @@ let formatted = "";
 document.getElementById("convertButton").addEventListener("click", convertTOjsonl);
 document.getElementById("copyButton").addEventListener("click", copyToClipboard);
 document.getElementById("saveToLocalFileButton").addEventListener("click", downloadFile);
+document.getElementById("saveToLocalMemoryBrowserButton").addEventListener("click", saveToLocalStorage);
+document.getElementById("deleteLocalStorageButton").addEventListener("click", deleteFromLocalStorage);
 
 function convertTOjsonl(){
     console.log('button pushed');
@@ -20,6 +22,7 @@ function convertTOjsonl(){
     let cleanObject = {'prompt': promptTrimmed, 'completion': completionTrimmed};
     cleanArray.push(cleanObject);
     updateResultsDiv();
+    document.getElementById("message").innerText = "-";
 }
 
 function updateResultsDiv(){
@@ -32,6 +35,7 @@ function updateResultsDiv(){
 
 function copyToClipboard(){
     navigator.clipboard.writeText(formatted);
+    document.getElementById('message').innerText = "jsonl data copied to clipboard";
 }
 
 function downloadFile(){
@@ -46,4 +50,37 @@ function downloadFile(){
     document.body.appendChild(a);
     a.click();
     window.URL.revokeObjectURL(url);
+    document.getElementById('message').innerText = "jsonl data downloaded as jsonl.jsonl file";
 }
+
+function saveToLocalStorage(){
+    let results = document.getElementById("results").innerText;
+    let jsonlObject = { "formattedResultsHTML": results, "arrayResults": jsonlArray, "cleanResults": cleanArray};
+    let jsonlObjectStringified = JSON.stringify(jsonlObject);
+    localStorage.setItem("jsonlements", jsonlObjectStringified);
+    console.log('saved to local storage...');
+    document.getElementById('message').innerText = "jsonl data saved to browser local storage";
+}
+
+function checkLocalStorage(){
+    let jsonlements = localStorage.getItem("jsonlements");
+    console.log(jsonlements);
+    if (jsonlements != null) {
+        console.log("jsonlements object found");
+        let jsonlObject = JSON.parse(jsonlements);
+        formatted = jsonlObject.formattedResultsHTML;
+        jsonlArray = jsonlObject.arrayResults;
+        cleanArray = jsonlObject.cleanResults;
+        updateResultsDiv();
+        document.getElementById('message').innerText = "jsonl data retrieved from local storage in browser";
+    } else {
+        console.log("nothing in local storage");
+    }
+}
+
+function deleteFromLocalStorage(){
+    localStorage.removeItem('jsonlements');
+    document.getElementById('message').innerText = "jsonl data removed from local storage, refresh the page to erase results";
+}
+
+checkLocalStorage();
