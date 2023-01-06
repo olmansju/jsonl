@@ -15,7 +15,7 @@
 <div id="preprompt" class="flex-child-small"><span>{"prompt": "</span></div>
 
 <div id="prompt" class="flex-child-textarea">
-    <textarea id="promptTextArea" name="promptTextArea" class="textarea">-prompt here-</textarea>
+    <textarea id="promptTextArea" name="promptTextArea" class="textarea"></textarea>
 </div>
 
 <div id="postprompt" class="flex-child-small"><span>\n\n###\n\n", </span></div>
@@ -23,7 +23,7 @@
 <div id="precompletion" class="flex-child-small"><span>"completion":" </span></div>
 
 <div id="completion" class="flex-child-textarea">
-    <textarea id="completionTextArea" name="completionTextArea" class="textarea">-completion here-</textarea>
+    <textarea id="completionTextArea" name="completionTextArea" class="textarea"></textarea>
 </div>
 
 <div id="postcompletion" class="flex-child-small"><span> END"} </span></div>
@@ -33,7 +33,7 @@
     <input type="button" id="convertButton" name="convertButton" class="button" value="convert to jsonl format" />
 </div>
 <br><br><br>
-<div id="result"><span id="downloadResults">results</span>: {"prompt": "-prompt here-\n\n###\n\n", "completion": " -completion here- END"} <br>
+<div id="result"><span id="resultCount"></span>: {"prompt": "-prompt here-\n\n###\n\n", "completion": " -completion here- END"} <br>
 <div id="results"></div>
 </div>
 <br><br>

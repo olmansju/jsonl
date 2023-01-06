@@ -11,15 +11,15 @@ document.getElementById("deleteLocalStorageButton").addEventListener("click", de
 function convertTOjsonl(){
     console.log('button pushed');
     let promptText = document.getElementById("promptTextArea").value;
-    let promptTrimmed = promptText.trim();
+    let promptTrimmed = promptText.trim().replace(/"/g, "'").replace(/\n/g, " ");
     let promptEnd = "\n\n###\n\n";
     let completionText = document.getElementById("completionTextArea").value;
-    let completionTrimmed = completionText.trim();
+    let completionTrimmed = completionText.trim().replace(/"/g, "'").replace(/\n/g, " ");
     let completionEnd = "END";
     //space at beginning of completion is deliberate / recommended
-    let jsonlObject = {'prompt': `${promptTrimmed}${promptEnd}`, 'completion': ` ${completionTrimmed} ${completionEnd}`};
+    let jsonlObject = {"prompt": `${promptTrimmed}${promptEnd}`, "completion": ` ${completionTrimmed} ${completionEnd}`};
     jsonlArray.push(jsonlObject);
-    let cleanObject = {'prompt': promptTrimmed, 'completion': completionTrimmed};
+    let cleanObject = {"prompt": promptTrimmed, "completion": completionTrimmed};
     cleanArray.push(cleanObject);
     updateResultsDiv();
     document.getElementById("message").innerText = "-";
@@ -28,8 +28,9 @@ function convertTOjsonl(){
 function updateResultsDiv(){
     console.log('updateResultsDiv called');
     formatted = "";
-    cleanArray.forEach(value=> formatted += `{'prompt': '${value.prompt}\\n\\n###\\n\\n', 'completion': ' ${value.completion} END'}\n`);
+    cleanArray.forEach(value=> formatted += `{"prompt": "${value.prompt.replace(/"/g, "'").replace(/\n/g, " ")}\\n\\n###\\n\\n", "completion": " ${value.completion.replace(/"/g, "'").replace(/\n/g, " ")} END"}\n`);
     document.getElementById('results').innerText = formatted;
+    document.getElementById('resultCount').innerText = `The total number of items in this training set is: ${cleanArray.length}`;
     console.log('jsonlArray:', JSON.stringify(jsonlArray), 'cleanArray:', JSON.stringify(cleanArray), 'formatted:', formatted);
 }
 
@@ -81,6 +82,13 @@ function checkLocalStorage(){
 function deleteFromLocalStorage(){
     localStorage.removeItem('jsonlements');
     document.getElementById('message').innerText = "jsonl data removed from local storage, refresh the page to erase results";
+}
+
+function fineTuneFormat(){
+    let pyCharmTerminalCommand = `openai -k 'your-api-key-here'  api fine_tunes.create -t "C:\Users\restOfYourPath\FileName.jsonl" -m "curie"`;
+    let uploadedModel = "curie:ft-ilt-tlte-cehs-unl-2023-01-06-21-01-08";
+    let uploadedResultFile = "file-gIEAtMuKE1tSLFscjRCXDdSC";
+    let terminalTest = `openai -k 'your-api-key-here'  api completions.create -m curie:ft-ilt-tlte-cehs-unl-2023-01-06-21-01-08 -p "when is the final day of class?"`;
 }
 
 checkLocalStorage();
