@@ -12,10 +12,10 @@ function convertTOjsonl(){
     console.log('button pushed');
     let promptText = document.getElementById("promptTextArea").value;
     let promptTrimmed = promptText.trim().replace(/"/g, "'").replace(/\n/g, " ");
-    let promptEnd = "\n\n###\n\n";
+    let promptEnd = "\nBotty-TA-259:";
     let completionText = document.getElementById("completionTextArea").value;
     let completionTrimmed = completionText.trim().replace(/"/g, "'").replace(/\n/g, " ");
-    let completionEnd = "END";
+    let completionEnd = "\n";
     //space at beginning of completion is deliberate / recommended
     let jsonlObject = {"prompt": `${promptTrimmed}${promptEnd}`, "completion": ` ${completionTrimmed} ${completionEnd}`};
     jsonlArray.push(jsonlObject);
@@ -23,12 +23,13 @@ function convertTOjsonl(){
     cleanArray.push(cleanObject);
     updateResultsDiv();
     document.getElementById("message").innerText = "-";
+    document.getElementById("completionTextArea").value = "";
 }
 
 function updateResultsDiv(){
     console.log('updateResultsDiv called');
     formatted = "";
-    cleanArray.forEach(value=> formatted += `{"prompt": "${value.prompt.replace(/"/g, "'").replace(/\n/g, " ")}\\n\\n###\\n\\n", "completion": " ${value.completion.replace(/"/g, "'").replace(/\n/g, " ")} END"}\n`);
+    cleanArray.forEach(value=> formatted += `{"prompt": "${value.prompt.replace(/"/g, "'").replace(/\n/g, " ")}\\nBotty-TA-259:", "completion": " ${value.completion.replace(/"/g, "'").replace(/\n/g, " ")}\\n"}\n`);
     document.getElementById('results').innerText = formatted;
     document.getElementById('resultCount').innerText = `The total number of items in this training set is: ${cleanArray.length}`;
     console.log('jsonlArray:', JSON.stringify(jsonlArray), 'cleanArray:', JSON.stringify(cleanArray), 'formatted:', formatted);
