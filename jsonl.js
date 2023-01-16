@@ -87,8 +87,12 @@ function deleteFromLocalStorage(){
 
 function fineTuneFormat(){
     let pyCharmTerminalCommand = `openai -k 'your-api-key-here'  api fine_tunes.create -t "C:\Users\restOfYourPath\FileName.jsonl" -m "curie"`;
-    let uploadedModel = "curie:ft-ilt-tlte-cehs-unl-2023-01-06-21-01-08";
-    let uploadedResultFile = "file-gIEAtMuKE1tSLFscjRCXDdSC";
+    let uploadedJSONLmodel01c = "curie:ft-ilt-tlte-cehs-unl-2023-01-06-21-01-08"; //$0.09
+    let uploadedJSONLmodel02c = "curie:ft-ilt-tlte-cehs-unl-2023-01-13-04-20-06"; //$0.17
+    let uploadedJSONLmodel02d = "davinci:ft-ilt-tlte-cehs-unl-2023-01-16-19-58-20"; //$1.65
+    let uploadedResultFile01 = "file-gIEAtMuKE1tSLFscjRCXDdSC";
+    let uploadedResultFile02 = "file-GCOJLBAvPL28yrIXbAa41W1j";
+    let uploadedResultFile03 = "file-zY3R7anSD7LyNUBFt92pwr7D";
     let terminalTest = `openai -k 'your-api-key-here'  api completions.create -m curie:ft-ilt-tlte-cehs-unl-2023-01-06-21-01-08 -p "when is the final day of class?"`;
 }
 
